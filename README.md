@@ -16,4 +16,4 @@ Es un patrón par el manejo de la información permite saber:
 - El valor actual de la información de la app se llama estado **STATE**
 - Un nuevo estado es creado, en base a la combinación del viejo estado y una acción por una función llamada **REDUCER**
 
-[](./img/flujo.png)
+![](https://github.com/dafaak/redux/blob/main/img/flujo.png)
