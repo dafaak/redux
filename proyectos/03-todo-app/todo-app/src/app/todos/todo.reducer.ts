@@ -3,7 +3,9 @@ import {crearTodo} from "./todo.actions";
 import {Todo} from "./models/todo.model";
 
 export const estadoInicial: Todo[] = [
-  new Todo('Salvar e Zelda')
+  new Todo('Obtener la espada Deku'),
+  new Todo('Hablar con el arbol Deku'),
+  new Todo('Hablar con Zelda'),
 ];
 
 export const _todoReducer = createReducer(
