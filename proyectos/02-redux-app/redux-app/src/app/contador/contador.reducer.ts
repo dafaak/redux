@@ -8,6 +8,6 @@ export const contadorReducer = createReducer(
   on(incrementar, (state) => state + 1),
   on(decrementar, (state) => state - 1),
   on(reset, (state) => 0),
-  on(multiplicar, (state) => state * 2),
-  on(dividir, (state) => state / 2)
+  on(multiplicar, (state, {numero}) => state * numero),
+  on(dividir, (state, {numero}) => state / numero)
 );

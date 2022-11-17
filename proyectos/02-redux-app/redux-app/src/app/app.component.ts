@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {decrementar, incrementar} from "./contador/contador.actions";
+import {AppState} from "./app.reducers";
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,8 @@ export class AppComponent {
   title = 'redux-app';
   contador!: number;
 
-  constructor(private store: Store) {
+  constructor(private store: Store<AppState>) {
     this.store.select((state) => {
-        // @ts-ignore
         return state.contador
       }
     ).subscribe(
