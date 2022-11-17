@@ -23,6 +23,7 @@ export class TodoListComponent implements OnInit {
       }
     ).subscribe(
       todos => {
+        console.log(todos);
         this.todos = todos;
       }
     )
