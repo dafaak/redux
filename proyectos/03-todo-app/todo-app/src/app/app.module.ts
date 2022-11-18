@@ -23,12 +23,15 @@ import {appReducers} from "./app.reducer";
     AppRoutingModule,
     TodoModule,
     StoreModule.forRoot(
-      appReducers,
-      {}
+        appReducers,
+        {}
     ),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
   ],
   providers: [],
+  exports: [
+    FooterComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
