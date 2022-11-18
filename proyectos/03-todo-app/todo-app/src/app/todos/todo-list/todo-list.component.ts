@@ -3,6 +3,7 @@ import {Store} from "@ngrx/store";
 
 import {AppState} from "../../app.reducer";
 import {Todo} from "../models/todo.model";
+import {tiposFiltros} from "../../filtro/filtro.action";
 
 @Component({
   selector: 'app-todo-list',
@@ -11,6 +12,7 @@ import {Todo} from "../models/todo.model";
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
+  filtroActual!: tiposFiltros;
 
   constructor(
     private store: Store<AppState>,
@@ -18,13 +20,19 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(state => {
-        return state.todos
-      }
-    ).subscribe(
-      todos => {
-        console.log(todos);
+    // this.store.select(state => {
+    //     return state.todos
+    //   }
+    // ).subscribe(
+    //   todos => {
+    //     console.log(todos);
+    //     this.todos = todos;
+    //   }
+    // )
+    this.store.subscribe(
+      ({todos, filtro}) => {
         this.todos = todos;
+        this.filtroActual = filtro;
       }
     )
   }

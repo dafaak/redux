@@ -8,7 +8,7 @@ export const estadoInicial: Todo[] = [
   new Todo('Hablar con Zelda'),
 ];
 
-export const _todoReducer = createReducer(
+export const todoReducer = createReducer(
   estadoInicial,
   on(crearTodo, (state, {texto}) => [...state, new Todo(texto)]),
   on(eliminarTodo, (state, {id}) => {
@@ -57,6 +57,3 @@ export const _todoReducer = createReducer(
   ),
 );
 
-export function todoReducer(state: Todo[], action: Action) {
-  return _todoReducer(state, action)
-}
