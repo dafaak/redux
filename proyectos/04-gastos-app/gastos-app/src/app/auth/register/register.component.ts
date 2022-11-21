@@ -55,23 +55,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
     const {nombre, correo, password} = this.formGroup.value;
     this.store.dispatch(ui.isLoading());
-    Swal.fire({
-      title: 'Espere por favor',
-      didOpen: () => {
-        Swal.showLoading(null);
-      },
-    });
+    // Swal.fire({
+    //   title: 'Espere por favor',
+    //   didOpen: () => {
+    //     Swal.showLoading(null);
+    //   },
+    // });
     this.authService.crearUsuario(nombre, correo, password)
       .then(credenciales => {
           console.log({credenciales});
-          Swal.close();
+          // Swal.close();
           this.store.dispatch(ui.stopLoading());
           this.router.navigate(['/']);
         }
       )
       .catch(error => {
           console.error(error);
-          Swal.close();
+          // Swal.close();
           this.store.dispatch(ui.stopLoading());
           Swal.fire({
               title: 'Error!',
