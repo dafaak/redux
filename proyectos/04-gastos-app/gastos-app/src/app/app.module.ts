@@ -21,6 +21,9 @@ import {environment} from '../environments/environment';
 import {provideAuth, getAuth} from '@angular/fire/auth';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {StoreModule} from '@ngrx/store';
+import {appReducers} from "./app.reducer";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -42,6 +45,8 @@ import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/compat/auth"
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    StoreModule.forRoot(appReducers, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
