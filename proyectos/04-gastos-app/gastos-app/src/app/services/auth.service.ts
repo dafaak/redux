@@ -1,25 +1,42 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
-import {map, Observable} from "rxjs";
+import {map, Observable, Subscription} from "rxjs";
 import {UsuarioModel} from "../models/usuario.model";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {Store} from "@ngrx/store";
+import *as authActions from "../auth/auth.actions";
+import {FirebaseUserInterface} from "../interfaces/firebase-user.interface";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  userSubscription!: Subscription;
 
   constructor(
     private auth: AngularFireAuth,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private store: Store,
   ) {
   }
 
   initAuthListener() {
     this.auth.authState.subscribe(
-      fbUsuer => {
-        console.log(fbUsuer?.email);
-        console.log(fbUsuer?.uid);
+      fbUser => {
+        if (fbUser) {
+          this.userSubscription = this.firestore.doc(`${fbUser.uid}/usuario`)
+            .valueChanges()
+            .subscribe(
+              (firestoreUser: any) => {
+                console.log(firestoreUser);
+                const tempUser = UsuarioModel.fromFirestore(firestoreUser);
+                this.store.dispatch(authActions.setUser({user: tempUser}))
+              }
+            )
+        } else {
+          this.userSubscription.unsubscribe();
+          this.store.dispatch(authActions.unsetUser());
+        }
       }
     )
   }
@@ -46,6 +63,7 @@ export class AuthService {
   }
 
   logout() {
+
     return this.auth.signOut();
   }
 
