@@ -12,6 +12,11 @@ import {FirebaseUserInterface} from "../interfaces/firebase-user.interface";
 })
 export class AuthService {
   userSubscription!: Subscription;
+  private _user?: UsuarioModel;
+
+  get user(): UsuarioModel | undefined {
+    return this._user ? {...this._user} : undefined;
+  }
 
   constructor(
     private auth: AngularFireAuth,
@@ -30,10 +35,12 @@ export class AuthService {
               (firestoreUser: any) => {
                 console.log(firestoreUser);
                 const tempUser = UsuarioModel.fromFirestore(firestoreUser);
+                this._user = tempUser;
                 this.store.dispatch(authActions.setUser({user: tempUser}))
               }
             )
         } else {
+          this._user = undefined;
           this.userSubscription.unsubscribe();
           this.store.dispatch(authActions.unsetUser());
         }
