@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {IngresoEgresoModel} from "../models/ingreso-egreso.model";
 import {AuthService} from "./auth.service";
+import {map} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,20 @@ export class IngresoEgresoService {
 
   initIngresosEgresosListener(uid: string) {
     this.firestore.collection(`${uid}/ingresos-egresos/items`)
-      .valueChanges()
+      .snapshotChanges() // para obtener el uid
+      .pipe(
+        map(snapshot => {
+            return snapshot.map(doc => {
+                const data: any = doc.payload.doc.data() // aqui se obtienen los datos del ingreso egreso
+                return {
+                  uid: doc.payload.doc.id,
+                  ...data
+                }
+              }
+            )
+          }
+        )
+      )
       .subscribe(
         algo => {
           console.log({algo});
