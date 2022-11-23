@@ -55,6 +55,7 @@ export class IngresoEgresoComponent implements OnInit, OnDestroy {
     console.log(this.formIngresoEgreso.value, this.tipo);
     const {descripcion, monto} = this.formIngresoEgreso.value;
     const ingresoEgreso = new IngresoEgresoModel(descripcion, monto, this.tipo);
+    delete ingresoEgreso.uid;
     this.ingresoEgresoService.crearIngresoEgreso(ingresoEgreso)
       .then(
         (ref) => {
@@ -71,6 +72,7 @@ export class IngresoEgresoComponent implements OnInit, OnDestroy {
       )
       .catch(
         err => {
+          console.error(err);
           this.store.dispatch(stopLoading());
           Swal.fire({
               title: 'Oops!',
