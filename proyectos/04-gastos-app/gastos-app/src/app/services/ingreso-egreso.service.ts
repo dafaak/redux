@@ -22,25 +22,24 @@ export class IngresoEgresoService {
   }
 
   initIngresosEgresosListener(uid: string) {
-    this.firestore.collection(`${uid}/ingresos-egresos/items`)
+    return this.firestore.collection(`${uid}/ingresos-egresos/items`)
       .snapshotChanges() // para obtener el uid
       .pipe(
         map(snapshot => {
             return snapshot.map(doc => {
-                const data: any = doc.payload.doc.data() // aqui se obtienen los datos del ingreso egreso
+                // aqui se obtienen los datos del ingreso egreso
                 return {
                   uid: doc.payload.doc.id,
-                  ...data
+                  ...doc.payload.doc.data() as any
                 }
               }
             )
           }
         )
       )
-      .subscribe(
-        algo => {
-          console.log({algo});
-        }
-      )
+  }
+
+  borrarIngresoEgreso(uid: string) {
+    return this.firestore.doc(`${this.authService.user?.uid}/ingresos-egresos/items/${uid}`).delete()
   }
 }
