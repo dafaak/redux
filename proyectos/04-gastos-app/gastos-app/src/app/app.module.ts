@@ -24,6 +24,7 @@ import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/compat/auth"
 import {StoreModule} from '@ngrx/store';
 import {appReducers} from "./app.reducer";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { OrdenIngresoPipe } from './ingreso-egreso/pipes/orden-ingreso.pipe';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     DashboardComponent,
     IngresoEgresoComponent,
     EstadisticaComponent,
+    OrdenIngresoPipe,
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
