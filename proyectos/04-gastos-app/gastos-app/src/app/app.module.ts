@@ -23,8 +23,7 @@ import {OrdenIngresoPipe} from './ingreso-egreso/pipes/orden-ingreso.pipe';
 
 import {environment} from '../environments/environment';
 import {appReducers} from "./app.reducer";
-
-
+import {SharedModule} from "./shared/shared.module";
 
 
 @NgModule({
@@ -35,9 +34,6 @@ import {appReducers} from "./app.reducer";
     EstadisticaComponent,
     OrdenIngresoPipe,
     DetalleComponent,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +45,7 @@ import {appReducers} from "./app.reducer";
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     NgChartsModule,
     AuthModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
