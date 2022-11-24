@@ -42,7 +42,9 @@ export class AuthService {
             )
         } else {
           this._user = undefined;
-          this.userSubscription.unsubscribe();
+          if (this.userSubscription) {
+            this.userSubscription.unsubscribe();
+          }
           this.store.dispatch(ingresoEgresoActions.unsetIngresoEgreso());
           this.store.dispatch(authActions.unsetUser());
         }
