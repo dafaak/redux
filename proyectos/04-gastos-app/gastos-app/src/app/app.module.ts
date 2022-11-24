@@ -23,8 +23,9 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {StoreModule} from '@ngrx/store';
 import {appReducers} from "./app.reducer";
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { OrdenIngresoPipe } from './ingreso-egreso/pipes/orden-ingreso.pipe';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {OrdenIngresoPipe} from './ingreso-egreso/pipes/orden-ingreso.pipe';
+import {NgChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { OrdenIngresoPipe } from './ingreso-egreso/pipes/orden-ingreso.pipe';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     StoreModule.forRoot(appReducers, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
