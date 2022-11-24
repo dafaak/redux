@@ -15,11 +15,21 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
+  // {
+  //   path: '',
+  //   component: DashboardComponent,
+  //   children: dashboardRoutes,
+  //   canActivate:[AuthGuard]
+  // },
   {
     path: '',
-    component: DashboardComponent,
-    children: dashboardRoutes,
-    canActivate:[AuthGuard]
+    canLoad:[AuthGuard],
+    loadChildren: () => import('./dashboard/dashboard.module').then(
+      mod => {
+        return mod.DashboardModule
+      }
+    ),
+   // canActivateChild: [AuthGuard]
   },
   {
     path: '**',
