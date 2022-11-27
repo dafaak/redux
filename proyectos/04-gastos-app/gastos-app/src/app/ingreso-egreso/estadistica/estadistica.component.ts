@@ -4,6 +4,7 @@ import {AppState} from "../../app.reducer";
 import {IngresoEgresoModel} from "../../models/ingreso-egreso.model";
 import {Subscription} from "rxjs";
 import {ChartData, ChartDataset, ChartEvent, ChartType} from 'chart.js';
+import {AppStateWithIngreso} from "../ingreso-egreso.reducer";
 
 @Component({
   selector: 'app-estadistica',
@@ -24,14 +25,11 @@ export class EstadisticaComponent implements OnInit, OnDestroy {
   public doughnutChartLabels: string[] = ['Ingresos', 'Egresos'];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
-    datasets: [
-
-      {data: [250, 130]}
-    ]
+    datasets: []
   };
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppStateWithIngreso>
   ) {
   }
 

@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {DashboardComponent} from "./dashboard.component";
 import {SharedModule} from "../shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
 import {dashboardRoutes} from "./dashboard.routes";
-import {AuthGuard} from "../services/auth.guard";
+import {StoreModule} from "@ngrx/store";
+import {ingresoEgresoReducer} from "../ingreso-egreso/ingreso-egreso.reducer";
 
 
 const rutasHijas: Routes = [
@@ -23,6 +23,7 @@ const rutasHijas: Routes = [
     SharedModule,
     RouterModule,
     RouterModule.forChild(rutasHijas),
+    StoreModule.forFeature('ingresosEgresos', ingresoEgresoReducer)
   ],
 })
 export class DashboardModule {
