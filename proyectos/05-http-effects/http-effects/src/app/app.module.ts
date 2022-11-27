@@ -8,6 +8,7 @@ import {UsuariosModule} from "./usuarios/usuarios.module";
 
 // Componentes
 import {AppComponent} from './app.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {AppComponent} from './app.component';
     AppRoutingModule,
     SharedModule,
     UsuariosModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
