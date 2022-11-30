@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UsuarioService} from "../../services/usuario.service";
+import {UsuarioModel} from "../../models/usuario.model";
 
 @Component({
   selector: 'app-lista',
@@ -7,6 +8,7 @@ import {UsuarioService} from "../../services/usuario.service";
   styleUrls: ['./lista.component.css']
 })
 export class ListaComponent implements OnInit {
+  usuarios: UsuarioModel[] = [];
 
   constructor(
     private usuarioService: UsuarioService
@@ -17,6 +19,7 @@ export class ListaComponent implements OnInit {
     this.usuarioService.getUsers()
       .subscribe(
         res => {
+          this.usuarios = res;
           console.log(res);
         }
       )
