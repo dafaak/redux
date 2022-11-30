@@ -62,3 +62,16 @@ las acciones deben ser lo más simples posible.
 - Permite crear un nuevo estado usando **dispatch(ACTION)**
 - Permite notificar cambios de estado via **subscribe()**
 
+# **EFFECTS**
+
+No todas las acciones disparan efectos, solo las que definamos.
+
+Las acciones pueden ser escuchadas por un efecto, y pueden hacer otras tareas
+
+### **Qué son los efectos?**
+
+- Escuchan acciones que son despachadas por el ngrx/store
+- Simplifican la lógica en los componentes
+- Se comunican fuera del ecosistema de Angular
+
+
