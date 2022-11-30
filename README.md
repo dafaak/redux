@@ -75,3 +75,4 @@ Las acciones pueden ser escuchadas por un efecto, y pueden hacer otras tareas
 - Se comunican fuera del ecosistema de Angular
 
 
+![](https://github.com/dafaak/redux/blob/main/img/effects.png)
