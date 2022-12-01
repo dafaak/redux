@@ -20,6 +20,12 @@ export class ListaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(state => state.usuarios)
+      .subscribe(
+        usuarios => {
+          this.usuarios = usuarios.usuarios;
+        }
+      )
     this.store.dispatch(cargarUsuarios());
     // this.usuarioService.getUsers()
     //   .subscribe(
