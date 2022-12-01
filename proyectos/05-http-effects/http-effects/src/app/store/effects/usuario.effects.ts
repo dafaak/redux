@@ -24,7 +24,7 @@ export class UsuarioEffects {
         (action) => this.usuarioService.getUserById(action.id)
           .pipe(
             map(user => usuarioActions.cargarUsuarioSuccess({usuario: user})),
-            catchError(err => of(usuarioActions.cargarUsuarioError({payload: err})))
+            catchError(err => of(usuarioActions.cargarUsuarioError({payload: err}), usuarioActions.clearUsuario()))
           )
       )
     )

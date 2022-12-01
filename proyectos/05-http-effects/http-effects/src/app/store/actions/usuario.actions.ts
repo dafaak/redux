@@ -13,3 +13,6 @@ export const cargarUsuarioError = createAction(
   '[Usuario] cargarUsuarioError',
   props<{ payload: any }>()
 );
+export const clearUsuario = createAction(
+  '[Usuario] clearUsuario'
+);
