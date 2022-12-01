@@ -76,3 +76,4 @@ Las acciones pueden ser escuchadas por un efecto, y pueden hacer otras tareas
 
 
 ![](https://github.com/dafaak/redux/blob/main/img/effects.png)
+
