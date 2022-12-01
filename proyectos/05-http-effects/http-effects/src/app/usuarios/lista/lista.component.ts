@@ -12,6 +12,8 @@ import {cargarUsuarios} from "../../store/actions";
 })
 export class ListaComponent implements OnInit {
   usuarios: UsuarioModel[] = [];
+  loading = false;
+  error!: any;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -22,8 +24,10 @@ export class ListaComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(state => state.usuarios)
       .subscribe(
-        usuarios => {
-          this.usuarios = usuarios.usuarios;
+        ({usuarios, loading, error}) => {
+          this.usuarios = usuarios;
+          this.loading = loading;
+          this.error = error;
         }
       )
     this.store.dispatch(cargarUsuarios());

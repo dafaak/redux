@@ -15,7 +15,14 @@ export class UsuarioService {
   }
 
   getUsers() {
-    return this.httpClient.get(`${environment.api}/users?perPage=6`)
+    return this.httpClient.get(`${environment.api}/users?delay=3`)
+      .pipe(
+        map((res: any) => res['data']
+        )
+      )
+  }
+  getUserById(id:string) {
+    return this.httpClient.get(`${environment.api}/users/${id}?delay=3`)
       .pipe(
         map((res: any) => res['data']
         )
